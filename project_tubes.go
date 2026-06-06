@@ -1,10 +1,55 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+)
 
+var (
+	scanner *bufio.Scanner
+)
+
+func input(prompt string) string {
+	fmt.Print(prompt)
+	scanner.Scan()
+	return strings.TrimSpace(scanner.Text())
+}
+
+func menu() {
+	for {
+		fmt.Println("  [ MENU UTAMA ]")
+		fmt.Println(" ")
+		fmt.Println("  A. Manajemen Data Warga  (CRUD)")
+		fmt.Println("  B. Pencatatan Setoran Sampah")
+		fmt.Println("  C. Pencarian Data Warga")
+		fmt.Println("  D. Pengurutan Data")
+		fmt.Println("  E. Statistik Mingguan")
+		fmt.Println("  0. Keluar")
+		fmt.Println(" ")
+		fmt.Println(" ")
+		pilihan := input("Pilih (A,B, atau 0): ")
+		pilihan = strings.ToUpper(pilihan)
+		switch pilihan {
+		case "A":
+			manajemen()
+		case "B":
+			setoran()
+		case "C":
+			Pencarian()
+		case "D":
+			Pengurutan()
+		case "0":
+			break
+		default:
+			fmt.Println("  [!] Pilihan tidak valid.")
+		}
+	}
+
+}
 func manajemen() {
-	var y string
-for {
+	for {
 		fmt.Println("  [ MANAJEMEN DATA WARGA ]")
 		fmt.Printf("  Total warga terdaftar:\n")
 		fmt.Println("  1. Tambah Warga Baru")
@@ -14,10 +59,9 @@ for {
 		fmt.Println("  5. Hapus Data Warga")
 		fmt.Println("  0. Kembali ke Menu Utama")
 		fmt.Print("Pilih (A,B,C,D,E,atau 0): ")
-		fmt.Scan(&y)
+		pilihan := input("Pilih: ")
 
-
-		switch y {
+		switch pilihan {
 		case "1":
 			tambahWarga()
 		case "2":
@@ -35,46 +79,19 @@ for {
 		}
 	}
 }
-func setoran() {
+func tambahWarga(){}
+func tampilkanSemuaWarga(){}
+func detailWarga(){}
+func ubahWarga(){}
+func hapusWarga(){}
 
-}
-func Pencarian() {
 
-}
-func Pengurutan() {
 
-}
+func setoran() {}
+func Pencarian() {}
+func Pengurutan() {}
 
-func menu() {
-	var x string
-	for {
-		fmt.Println("  [ MENU UTAMA ]")
-		fmt.Println(" ")
-		fmt.Println("  A. Manajemen Data Warga  (CRUD)")
-		fmt.Println("  B. Pencatatan Setoran Sampah")
-		fmt.Println("  C. Pencarian Data Warga")
-		fmt.Println("  D. Pengurutan Data")
-		fmt.Println("  E. Statistik Mingguan")
-		fmt.Println("  0. Keluar")
-		fmt.Println(" ")
-		fmt.Println(" ")
-		fmt.Printf("Pilih (A,B,C,D,E,atau 0): ")
-		fmt.Scan(&x)
-		switch x {
-		case "A", "a":
-			manajemen()
-		case "B", "b":
-			setoran()
-		case "C", "c":
-			Pencarian()
-		case "D", "d":
-			Pengurutan()
-		default:
-			fmt.Println("  [!] Pilihan tidak valid.")
-		}
-	}
-
-}
 func main() {
+	scanner = bufio.NewScanner(os.Stdin)
 	menu()
 }
